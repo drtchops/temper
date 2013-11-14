@@ -1,0 +1,3 @@
+Temper has been tested against python 2.7 and 3.3. To install:
+
+    python setup.py install

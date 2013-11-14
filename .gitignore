@@ -1,0 +1,15 @@
+syntax: glob
+.DS_Store
+*.pyc
+*.hg
+*.svn
+*.err
+*.out
+*.orig
+*.pg_dump
+*sublime*
+build/*
+dist/*
+.hg/*
+__pycache__/*
+MANIFEST
