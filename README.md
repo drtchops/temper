@@ -47,6 +47,7 @@ t('Hello!')
 
 You can chain block tags in a with command to enter each tag in sequence:
 ```python
+with t.html(), t.body(), t.div(class_='content'): t('My homepage.')
 ```
 
 Block tags can be immediately closed without using a with block by calling the tag. You can insert text at the same time:
