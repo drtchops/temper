@@ -15,7 +15,7 @@ To install Temper, run ```pip install temper``` or download the package manually
 # Basic Syntax
 
 ## Usage
-Import and intantiate the Temper object, which will handle the templating. The render function takes a function to call and a context to give it. Your template function must take 2 arguments: the Temper object and a context dictionary.
+Import and instantiate the Temper object, which will handle the templating. The render function takes a function to call and a context to give it. Your template function must take 2 arguments: the Temper object and a context dictionary.
 
 ```python
 def foo(t, c):
@@ -55,7 +55,7 @@ Block tags can be immediately closed without using a with block by calling the t
 t.a(href='/')('Home')
 ```
 
-If you use the cssselect extention, you can use item lookups on t to parse css selectors instead of using kwargs:
+If you use the cssselect extension, you can use item lookups on t to parse css selectors instead of using kwargs:
 ```python
 with t['div#context.row-fluid[data-layout="grid"]']: pass
 ```
