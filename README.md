@@ -9,7 +9,7 @@ Temper is a pure Python HTML DSL for angry developers.
 * django-compressor plugin
 
 # Installation Instructions
-To install Temper, run **pip install temper** or download the package manually and run **python setup.py install**
+To install Temper, run ```pip install temper``` or download the package manually and run ```python setup.py install```
 
 
 # Basic Syntax
@@ -26,7 +26,7 @@ Temper().render(foo, {})
 ```
 
 ## Tags
-Tags are functions on the Temper instance. They take **attributes as their arguments. Void tags (e.g. img, link) will append the tag and return. Block tags (e.g. html, div) will return a context manager you can enter with **with**.
+Tags are functions on the Temper instance. They take **attributes as their arguments. Void tags (e.g. img, link) will append the tag and return. Block tags (e.g. html, div) will return a context manager you can enter with ```with```.
 
 ```python
 def tmpl(t, c):
