@@ -1,6 +1,68 @@
 Temper is a pure Python HTML DSL for angry developers.
 
 
+# Features
+* Pure Python Syntax
+* Any Python code is valid in your templates
+* Easy blocks/macros/inheritance typical of templating engines, done the Python way
+* CSS Selector parsing
+* django-compressor plugin
+
+# Installation Instructions
+To install Temper, run **pip install temper** or download the package manually and run **python setup.py install**
+
+
+# Basic Syntax
+
+## Usage
+Import and intantiate the Temper object, which will handle the templating. The render function takes a function to call and a context to give it. Your template function must take 2 arguments: the Temper object and a context dictionary.
+
+```python
+def foo(t, c):
+    t.append('Hello, World!')
+
+from temper import Temper
+Temper().render(foo, {})
+```
+
+## Tags
+Tags are functions on the Temper instance. They take **attributes as their arguments. Void tags (e.g. img, link) will append the tag and return. Block tags (e.g. html, div) will return a context manager you can enter with **with**.
+
+```python
+def tmpl(t, c):
+    t.doctype
+    with t.html():
+        with t.head():
+            with t.title():
+                t.append('Temper Example')
+        with t.body():
+            t.append('Hello, World!')
+```
+
+## Shortcuts
+Text can be added by calling t directly. It takes optional kwargs of safe, strip, and end:
+```python
+t('Hello!')
+```
+
+You can chain block tags in a with command to enter each tag in sequence:
+```python
+```
+
+Block tags can be immediately closed without using a with block by calling the tag. You can insert text at the same time:
+```python
+t.a(href='/')('Home')
+```
+
+If you use the cssselect extention, you can use item lookups on t to parse css selectors instead of using kwargs:
+```python
+with t['div#context.row-fluid[data-layout="grid"]']: pass
+```
+
+
+# Full Django example
+
+
 ```python
 from django.http import HttpResponse
 from django.template import RequestContext
