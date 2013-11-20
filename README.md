@@ -18,7 +18,7 @@ To install Temper, run ```pip install temper``` or download the package manually
 
 ### Usage
 
-Import and instantiate the Temper object, which will handle the templating. The render function takes a function to call and a context to give it. Your template function must take 2 arguments: the Temper object and a context dictionary.
+Import and instantiate the ```Temper``` object, which will handle the templating. The ```render``` function takes a function to call and a context to give it. Your template function must take 2 arguments: the Temper object and a context dictionary.
 
 ```python
 # This code:
@@ -37,7 +37,7 @@ Temper().render(foo, {'name': 'Temper'})
 
 ### Tags
 
-Tags are functions on the Temper instance. They take **attributes as their arguments. Void tags (e.g. img, link) will append the tag and return. Block tags (e.g. html, div) will return a context manager you can enter with ```with```. Reserved keywords (class, for) must be appended with _. You can append _ to all attributes if it's easier.
+Tags are functions on the Temper instance. They take ```**attributes``` as their arguments. Void tags (e.g. ```img```, ```link```) will append the tag and return. Block tags (e.g. ```html```, ```div```) will return a context manager you can enter with ```with```. Reserved keywords (e.g. ```class```, ```for```) must be appended with ```_```. You can append an underscore to all attributes if it's easier.
 
 ```python
 def tmpl(t, c):
@@ -46,7 +46,9 @@ def tmpl(t, c):
         with t.head():
             with t.title():
                 t.append('Temper Example')
-        with t.body():
+            with t.style(type_='text/css'):
+                t.append('.bold { font-weight: bold; }')
+        with t.body(class_='bold'):
             t.append('Hello, World!')
 ```
 ```html
@@ -56,8 +58,11 @@ def tmpl(t, c):
         <title>
             Temper Example
         </title>
+        <style type="text/css">
+            .bold { font-weight: bold; }
+        </style>
     </head>
-    <body>
+    <body class="bold">
         Hello, World!
     </body>
 </html>
@@ -65,7 +70,7 @@ def tmpl(t, c):
 
 ### Shortcuts
 
-Text can be added by calling t directly. It takes optional kwargs of safe, strip, and end:
+Text can be added by calling ```t``` directly. It takes optional kwargs of ```safe```, ```strip```, and ```end```:
 ```python
 t('Hello!')
 ```
@@ -73,7 +78,7 @@ t('Hello!')
 Hello!
 ```
 
-You can chain block tags in a with command to enter each tag in sequence:
+You can chain block tags in a ```with``` command to enter each tag in sequence:
 ```python
 with t.html(), t.body(), t.div(class_='content'): t('My homepage.')
 ```
@@ -97,7 +102,7 @@ t.a(href='/')('Home')
 </a>
 ```
 
-If you use the cssselect extension, you can use item lookups on t to parse css selectors instead of using kwargs:
+If you use the ```cssselect``` extension, you can use item lookups on ```t``` to parse css selectors instead of using ```**attributes```:
 ```python
 with t['div#context.row-fluid[data-layout="grid"]']: pass
 ```
