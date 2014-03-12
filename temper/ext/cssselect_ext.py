@@ -21,7 +21,7 @@ class TemperCSSSelectMixin:
                 item = item.selector
             elif item.__class__ is cssselect.parser.Class:
                 kwargs['class_'] = ' '.join([
-                    kwargs.get('class_', ''), item.class_name]).strip()
+                    item.class_name, kwargs.get('class_', '')]).strip()
                 item = item.selector
             elif item.__class__ is cssselect.parser.Attrib:
                 kwargs[item.attrib] = item.value
