@@ -1,15 +1,63 @@
-syntax: glob
-.DS_Store
-*.pyc
-*.hg
-*.svn
-*.err
-*.out
-*.orig
-*.pg_dump
-*sublime*
+# Project Specific #
+####################
+# Add any project specific files here
+# Also remove any below entries that may conflict with your current project
+
+# Compiled source #
+###################
+*.py[co]
+__pycache__
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.swp
+*.tmp
 build/*
 dist/*
-.hg/*
-__pycache__/*
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.tar
+*.gz
+*.bz2
+*.iso
+*.jar
+*.rar
+*.zip
+
+# Source control and IDEs #
+###########################
+*.hg
+*.svn
+*.orig
+*sublime*
+.project
+.pydevproject
 MANIFEST
+
+# Logs and databases #
+######################
+*.log
+*.err
+*.out
+*.sql
+*.sqlite
+*.pg_dump
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini

@@ -3,10 +3,7 @@ from django.template import RequestContext
 from django.views.generic.base import TemplateView
 from temper import Temper
 
-from .utils import css_link
-from .utils import js_link
-# from .utils import select
-from .utils import url
+from .utils import css_link, js_link, url  # , select
 
 
 class View(TemplateView):

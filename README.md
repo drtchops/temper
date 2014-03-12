@@ -2,6 +2,8 @@
 
 Temper is a pure Python HTML DSL for angry developers.
 
+...That means you can write your templates in Python.
+
 ## Features
 
 * Pure Python Syntax
@@ -114,6 +116,24 @@ with t['div#context.row-fluid[data-layout="grid"]']: pass
 ## Full Django example
 
 ```python
+# utils.py
+def select(t, name, options=[], value=None):
+    with t.select():
+        for o in options:
+            with t.option(checked=o[0] == value, value=o[0]):
+                t(o[1])
+
+
+def css_link(t, href):
+    t.link(rel='stylesheet', href=href)
+
+
+def js_link(t, href):
+    t.script(type='text/javascript', src=href)()
+```
+
+```python
+# views.py
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.views.generic.base import TemplateView

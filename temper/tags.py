@@ -51,13 +51,13 @@ class Tag(object):
 
     @property
     def start_tag(self):
-        return '<{}{}>'.format(self.tag_name, self.attr_str)
+        return '<{0}{1}>'.format(self.tag_name, self.attr_str)
 
     @property
     def end_tag(self):
         if not self.is_block:
-            raise TypeError('{} is a void tag.'.format(self.tag_name))
-        return '</{}>'.format(self.tag_name)
+            raise TypeError('{0} is a void tag.'.format(self.tag_name))
+        return '</{0}>'.format(self.tag_name)
 
     def attrs(self, **attrs):
         self._attrs.update(attrs)

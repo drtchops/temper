@@ -16,7 +16,7 @@ class Param(dict):
         try:
             return self[name]
         except KeyError:
-            raise AttributeError("{} instance has no attribute '{}'".format(
+            raise AttributeError("{0} instance has no attribute '{1}'".format(
                 self.__class__.__name__, name))
 
     def __setattr__(self, name, value):
@@ -48,7 +48,7 @@ def attributes_string(attrs):
 
         if n == 'data' and issubclass(v.__class__, dict):
             for attr, value in v.items():
-                s = 'data-{}="{}"'.format(attr, value)
+                s = 'data-{0}="{1}"'.format(attr, value)
                 attributes = ' '.join([attributes, s])
             continue
 
@@ -58,7 +58,7 @@ def attributes_string(attrs):
         elif v is True:
             s = n
         else:
-            s = '{}="{}"'.format(n, v)
+            s = '{0}="{1}"'.format(n, v)
         attributes = ' '.join([attributes, s])
     return attributes
 

@@ -1,19 +1,29 @@
 #!/usr/bin/env python
 
-
 from __future__ import print_function
 
 from temper import Temper
 
 
-t = Temper()
-
-
 def main():
-    print(t.render(template))
+    print(Temper().render(template))
 
 
-def template(*args):
+def template(t, c):
+    '''\
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Temper Example
+        </title>
+    </head>
+    <body>
+        Hello, World!
+    </body>
+</html>
+'''
+
     t.doctype
     with t.html():
         with t.head():

@@ -1,7 +1,6 @@
 import sys
 
-from django.conf.urls import patterns
-from django.conf.urls import url as django_url
+from django.conf.urls import patterns, url as django_url
 
 
 def url(*regexes, **kwargs):

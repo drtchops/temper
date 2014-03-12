@@ -1,9 +1,7 @@
 from textwrap import dedent
 
-from temper.tags import ALL_TAGS
-from temper.tags import Tag
-from temper.utils import Param
-from temper.utils import escape
+from temper.tags import ALL_TAGS, Tag
+from temper.utils import Param, escape
 
 
 class Temper:
@@ -28,7 +26,7 @@ class Temper:
     def __getattr__(self, tag_name):
         if tag_name in ALL_TAGS:
             return lambda **attrs: self.tag(tag_name, **attrs)
-        raise AttributeError("{} instance has no attribute '{}'".format(
+        raise AttributeError("{0} instance has no attribute '{1}'".format(
             self.__class__.__name__, tag_name))
 
     def __call__(self, text, **kwargs):
@@ -52,13 +50,13 @@ class Temper:
             if safe is False or (safe is None and not self.settings.safe):
                 value = escape(value)
             if self.settings.indent:
-                value = '{}{}'.format(self.settings.indent * self.depth, value)
+                value = '{0}{1}'.format(self.settings.indent * self.depth, value)
             if strip or (strip is None and self.settings.strip):
                 value = dedent(value).strip()
             if end is None:
-                value = '{}{}'.format(value, self.settings.end)
+                value = '{0}{1}'.format(value, self.settings.end)
             else:
-                value = '{}{}'.format(value, end)
+                value = '{0}{1}'.format(value, end)
             self.tree += value
 
     def tag(self, tag_name, **attrs):
@@ -66,7 +64,7 @@ class Temper:
 
     def comment(self, text, **kwargs):
         kwargs['safe'] = True
-        self.append('<!-- {} -->'.format(text), **kwargs)
+        self.append('<!-- {0} -->'.format(text), **kwargs)
 
     @property
     def doctype(self):

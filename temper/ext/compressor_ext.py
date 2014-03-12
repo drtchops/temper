@@ -1,5 +1,4 @@
-from compressor.templatetags.compress import CompressorMixin
-from compressor.templatetags.compress import OUTPUT_FILE
+from compressor.templatetags.compress import CompressorMixin, OUTPUT_FILE
 
 from temper import Temper
 from temper.utils import block
