@@ -31,7 +31,7 @@ class Param(dict):
 
 class TemperBlock(GeneratorContextManager):
     '''
-        Temper wrapper around a contex manager.
+        Temper wrapper around a context manager.
         Provides a shorthand for instant closing.
     '''
     def __call__(self):
@@ -47,8 +47,8 @@ def block(func):
         Decorator for defining your own block functions when extending Temper.
     '''
     @wraps(func)
-    def helper(*args, **kwds):
-        return TemperBlock(func(*args, **kwds))
+    def helper(*args, **kwargs):
+        return TemperBlock(func(*args, **kwargs))
     return helper
 
 

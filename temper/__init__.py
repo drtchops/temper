@@ -70,7 +70,7 @@ class Temper:
     def append(self, value, safe=None, strip=None, end=None):
         '''
             Appends a str value on the template. Any given arguments will
-            override the temper object's settings. Optional agruments are:
+            override the temper object's settings. Optional arguments are:
             safe: Whether to escape any dangerous characters to HTML entities.
             strip: Whether to strip the str on whitespace.
             end: What str to append to the end of the str.
