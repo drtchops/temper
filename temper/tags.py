@@ -22,7 +22,17 @@ ALL_TAGS = BLOCK_TAGS | VOID_TAGS
 
 
 class Tag(object):
+    '''
+        Main Tag object which represents an HTML tag.
+    '''
+
     def __init__(self, tag_name, t, **attrs):
+        '''
+            Constructor. Takes the following arguments:
+            tag_name: Name of the HTML tag. Will determine if it's a void tag.
+            t: A Temper instance.
+            **attrs: Attributes on this tag.
+        '''
         if tag_name == 'doctype':
             tag_name = '!DOCTYPE'
         self.tag_name = tag_name

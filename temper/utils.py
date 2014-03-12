@@ -8,10 +8,16 @@ from functools import wraps
 
 
 class Dummy(object):
+    '''
+        Dummy object for setting arbitrary attributes.
+    '''
     pass
 
 
 class Param(dict):
+    '''
+        Allows a dict to be accessed like an object.
+    '''
     def __getattr__(self, name):
         try:
             return self[name]
@@ -24,6 +30,10 @@ class Param(dict):
 
 
 class TemperBlock(GeneratorContextManager):
+    '''
+        Temper wrapper around a contex manager.
+        Provides a shorthand for instant closing.
+    '''
     def __call__(self):
         self.close()
 
@@ -33,6 +43,9 @@ class TemperBlock(GeneratorContextManager):
 
 
 def block(func):
+    '''
+        Decorator for defining your own block functions when extending Temper.
+    '''
     @wraps(func)
     def helper(*args, **kwds):
         return TemperBlock(func(*args, **kwds))
@@ -40,6 +53,9 @@ def block(func):
 
 
 def attributes_string(attrs):
+    '''
+        Takes a dict and returns an HTML rendered string of attributes.
+    '''
     attributes = ''
     for k, v in attrs.items():
         n = k
@@ -64,6 +80,9 @@ def attributes_string(attrs):
 
 
 def escape(s):
+    '''
+        Replaces dangerous characters with HTML escaped entities.
+    '''
     return s.replace(
         '&', '&amp;',
     ).replace(
