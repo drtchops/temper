@@ -1,4 +1,4 @@
-# Temper: HTML in Python
+# Temper: Templates in Python
 
 Temper is a pure Python HTML DSL for angry developers.
 
