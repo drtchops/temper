@@ -138,6 +138,10 @@ class TemperTestCase(unittest.TestCase):
         tmpl = lambda t, c: t.input()('test')
         self.assertRaises(TypeError, self.basic_temper.render, tmpl)
 
+    def test_invalid_tag(self):
+        tmpl = lambda t, c: t.notatag()('test')
+        self.assertRaises(AttributeError, self.basic_temper.render, tmpl)
+
     def test_block_with(self):
         def tmpl(t, c):
             with t.div():
@@ -206,9 +210,27 @@ class TemperTestCase(unittest.TestCase):
         actual = self.basic_temper.render(tmpl)
         self.assertEqual(expected, actual)
 
+    def test_append_tag(self):
+        tmpl = lambda t, c: t.append(t.tag('div'))
+        expected = '<div>\n'
+        actual = self.basic_temper.render(tmpl)
+        self.assertEqual(expected, actual)
+
     def test_comment(self):
         tmpl = lambda t, c: t.comment('test')
         expected = '<!-- test -->\n'
+        actual = self.basic_temper.render(tmpl)
+        self.assertEqual(expected, actual)
+
+    def test_doctype(self):
+        tmpl = lambda t, c: t.doctype
+        expected = '<!DOCTYPE html>\n'
+        actual = self.basic_temper.render(tmpl)
+        self.assertEqual(expected, actual)
+
+    def test_doctype_as_tag(self):
+        tmpl = lambda t, c: t(t.tag('doctype', html=True))
+        expected = '<!DOCTYPE html>\n'
         actual = self.basic_temper.render(tmpl)
         self.assertEqual(expected, actual)
 
@@ -227,6 +249,21 @@ class TemperTestCase(unittest.TestCase):
     def test_data_attributes(self):
         tmpl = lambda t, c: t.div(data={'count': 5})()
         expected = '<div data-count="5"></div>\n'
+        actual = self.basic_temper.render(tmpl)
+        self.assertEqual(expected, actual)
+
+    def test_update_attributes(self):
+        def tmpl(t, c):
+            div = t.div()
+            div.attrs(id='some-id')
+            with div:
+                t('contents')
+
+        expected = '''\
+<div id="some-id">
+    contents
+</div>
+'''
         actual = self.basic_temper.render(tmpl)
         self.assertEqual(expected, actual)
 

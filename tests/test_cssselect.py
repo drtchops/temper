@@ -53,6 +53,10 @@ class CSSSelectTestCast(unittest.TestCase):
         tmpl = lambda t, c: t['div div']()
         self.assertRaises(ValueError, self.temper.render, tmpl)
 
+    def test_invalid_multiple_selectors(self):
+        tmpl = lambda t, c: t['div,div']()
+        self.assertRaises(ValueError, self.temper.render, tmpl)
+
 
 if __name__ == '__main__':
     unittest.main()

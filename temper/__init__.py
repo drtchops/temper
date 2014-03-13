@@ -77,6 +77,7 @@ class Temper:
         '''
         if value.__class__ is self.settings.tag_class:
             value = value.start_tag
+            safe = True
 
         if value is not None:
             if safe is False or (safe is None and not self.settings.safe):
