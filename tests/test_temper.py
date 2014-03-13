@@ -246,6 +246,18 @@ class TemperTestCase(unittest.TestCase):
         actual = self.basic_temper.render(tmpl)
         self.assertEqual(expected, actual)
 
+    def test_attributes_true(self):
+        tmpl = lambda t, c: t.input(disabled=True)
+        expected = '<input disabled>\n'
+        actual = self.basic_temper.render(tmpl)
+        self.assertEqual(expected, actual)
+
+    def test_attributes_false(self):
+        tmpl = lambda t, c: t.input(disabled=False)
+        expected = '<input>\n'
+        actual = self.basic_temper.render(tmpl)
+        self.assertEqual(expected, actual)
+
     def test_data_attributes(self):
         tmpl = lambda t, c: t.div(data={'count': 5})()
         expected = '<div data-count="5"></div>\n'
@@ -272,6 +284,26 @@ class TemperTestCase(unittest.TestCase):
         context = {'name': 'Temper'}
         expected = 'Hello, Temper!\n'
         actual = self.basic_temper.render(tmpl, context)
+        self.assertEqual(expected, actual)
+
+    def test_variables_param(self):
+        tmpl = lambda t, c: t('Hello, %s!' % c.name)
+        context = {'name': 'Temper'}
+        expected = 'Hello, Temper!\n'
+        actual = self.basic_temper.render(tmpl, context)
+        self.assertEqual(expected, actual)
+
+    def test_variables_invalid(self):
+        tmpl = lambda t, c: t(c.notavar)
+        self.assertRaises(AttributeError, self.basic_temper.render, tmpl)
+
+    def test_variables_set(self):
+        def tmpl(t, c):
+            c.name = 'Temper'
+            t('Hello, %s!' % c.name)
+
+        expected = 'Hello, Temper!\n'
+        actual = self.basic_temper.render(tmpl)
         self.assertEqual(expected, actual)
 
 
